@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User, UserObjectWithPassword } from 'src/domain/user.model';
 import { environment } from 'src/environments/environment.prod';
-import { LoginResponse, LoginWithTokenResponse } from '../login/login.service';
+import { LoginResponse } from '../login/login.service';
+import { TokenService } from '../token/token.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,35 +13,23 @@ export class RegisterService {
     ? environment.api.prodUrl
     : environment.api.devUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private tokenService: TokenService) {}
 
-  public async register(user: UserObjectWithPassword): Promise<LoginResponse> {
-    const body = {
-      ...user,
-    };
-
+  public async register(user: UserObjectWithPassword): Promise<boolean> {
     try {
       const resp: any = await this.http.post(
         `${this.prefixApiUrl}/user/`,
-        body
+        user
       );
 
-      if (resp.ok)
-        return {
-          ok: true,
-          user: new User(resp.user),
-          token: resp.token,
-        };
+      if (resp.ok) {
+        this.tokenService.set(resp.token);
+        return true;
+      }
 
-      return {
-        ok: false,
-        error: resp.error,
-      };
+      return false;
     } catch (error) {
-      return {
-        ok: false,
-        error: error.message,
-      };
+      return false;
     }
   }
 }

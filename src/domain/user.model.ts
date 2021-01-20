@@ -3,8 +3,8 @@ export class User {
   name: string;
   email: string;
   alias: string;
-  createAt: string;
-  updateAt: string;
+  createAt: Date;
+  updateAt: Date;
   bio: string;
 
   constructor(userObject: UserObject) {
@@ -12,8 +12,8 @@ export class User {
     this.name = userObject.name;
     this.email = userObject.email;
     this.alias = userObject.alias;
-    this.createAt = userObject.createAt;
-    this.updateAt = userObject.updateAt;
+    this.createAt = new Date(userObject.createAt);
+    this.updateAt = new Date(userObject.updateAt);
     this.bio = userObject.bio ? userObject.bio : '';
   }
 }
@@ -34,7 +34,5 @@ export interface UserObjectWithPassword {
   email: string;
   password: string;
   alias: string;
-  createAt: string;
-  updateAt: string;
   bio?: string;
 }

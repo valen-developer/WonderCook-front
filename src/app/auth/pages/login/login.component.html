@@ -1,0 +1,44 @@
+<div class="background">
+  <app-bubble></app-bubble>
+
+  <div class="card">
+    <h1>Acceder</h1>
+
+    <form class="form" [formGroup]="form">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="text"
+          class="form-control"
+          id="email"
+          placeholder="Email"
+          formControlName="email"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Contraseña</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Contraseña"
+          formControlName="password"
+        />
+      </div>
+
+      <div class="options">
+        <div class="remember">
+          <input type="checkbox" id="checkbox" formControlName="remember" />
+          <label for="checkbox"><span>Recuérdame</span></label>
+        </div>
+        <div class="signup">
+          <span routerLink="/register">Registrarme</span>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-primary submit" (click)="onSubmit()">
+        Entrar
+      </button>
+    </form>
+  </div>
+</div>

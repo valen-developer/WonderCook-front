@@ -7,7 +7,10 @@ export class TokenService {
   constructor() {}
 
   get(): string {
-    return localStorage.getItem('token');
+    const token = localStorage.getItem('token');
+    console.log(token);
+
+    return token;
   }
 
   set(token: string): void {
