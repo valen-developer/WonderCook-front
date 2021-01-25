@@ -1,0 +1,9 @@
+@import "../shared/css/form.css";
+
+.image {
+  background-image: url(../../../../assets/img/13236.jpg);
+}
+
+.notify {
+  display: block;
+}

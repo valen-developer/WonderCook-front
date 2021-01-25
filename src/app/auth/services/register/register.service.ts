@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User, UserObjectWithPassword } from 'src/domain/user.model';
+import { UserObjectWithPassword } from 'src/domain/user.model';
 import { environment } from 'src/environments/environment.prod';
-import { LoginResponse } from '../login/login.service';
 import { TokenService } from '../token/token.service';
 
 @Injectable({
@@ -13,23 +12,32 @@ export class RegisterService {
     ? environment.api.prodUrl
     : environment.api.devUrl;
 
-  constructor(private http: HttpClient, private tokenService: TokenService) {}
+  constructor(private http: HttpClient) {}
 
-  public async register(user: UserObjectWithPassword): Promise<boolean> {
+  public async register(
+    user: UserObjectWithPassword
+  ): Promise<{ ok: boolean; message: string }> {
     try {
-      const resp: any = await this.http.post(
-        `${this.prefixApiUrl}/user/`,
-        user
-      );
+      const resp: any = await this.http
+        .post(`${this.prefixApiUrl}/user/`, user)
+        .toPromise();
 
       if (resp.ok) {
-        this.tokenService.set(resp.token);
-        return true;
+        return {
+          ok: true,
+          message: 'Usuario registrado. Acceda a Página de acceso',
+        };
       }
 
-      return false;
+      return {
+        ok: false,
+        message: resp.error,
+      };
     } catch (error) {
-      return false;
+      return {
+        ok: false,
+        message: 'Registro no realizado',
+      };
     }
   }
 }

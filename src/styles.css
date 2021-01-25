@@ -1,6 +1,73 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+  --primary-color: #ffab91;
+  --secondary-color: #a5d6a7;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  /* font-family: "Faustina", serif; */
+  font-family: "Luckiest Guy", cursive;
+}
+
+.row {
+  display: flex;
+}
+.row-center {
+  justify-content: center;
+}
+.row-w1 {
+  width: 10%;
+}
+.row-w2 {
+  width: 20%;
+}
+.row-w4 {
+  width: 40%;
+}
+.row-w6 {
+  width: 60%;
+}
+.row-w8 {
+  width: 80%;
+}
+.row-w10 {
+  width: 100%;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+}
+.col-center {
+  justify-content: center;
+}
+.col-w1 {
+  width: 10%;
+}
+.col-w2 {
+  width: 20%;
+}
+.col-w4 {
+  width: 40%;
+}
+.col-w6 {
+  width: 60%;
+}
+.col-w8 {
+  width: 80%;
+}
+.col-w10 {
+  width: 100%;
 }

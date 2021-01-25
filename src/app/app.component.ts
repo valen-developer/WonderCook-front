@@ -9,7 +9,7 @@ import { LoginService } from './auth/services/login/login.service';
 export class AppComponent implements OnInit {
   constructor(private loginService: LoginService) {}
 
-  ngOnInit(): void {
-    this.loginService.loginWithToken();
+  async ngOnInit() {
+    await this.loginService.loginWithToken();
   }
 }

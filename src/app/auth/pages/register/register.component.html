@@ -1,1 +1,92 @@
-<p>register works!</p>
+<div class="main animate__animated animate__fadeIn">
+  <div class="image"></div>
+
+  <div class="form col col-w10">
+    <h1 class="animate__animated animate__fadeInRight">
+      Wonder<span>Cook</span>
+    </h1>
+
+    <div class="load" *ngIf="loading">
+      <app-loading></app-loading>
+    </div>
+
+    <div class="col col-w6 form-container" *ngIf="!loading">
+      <h2>Crear cuenta.</h2>
+      <p>
+        Crea una cuenta en <strong>WonderCook</strong> para poder hacer las
+        mejores recetas
+      </p>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="col input">
+          <label for="name">Nombre</label>
+          <input type="text" formControlName="name" id="name" name="name" />
+          <div class="row control-error" *ngIf="isInvalidControl('name')">
+            <i class="fas fa-exclamation-circle"></i>
+            <span>Introduce tu Nombre</span>
+          </div>
+        </div>
+
+        <div class="col input">
+          <label for="alias">Alias</label>
+          <input type="text" formControlName="alias" id="alias" name="alias" />
+          <div class="row control-error" *ngIf="isInvalidControl('alias')">
+            <i class="fas fa-exclamation-circle"></i>
+            <span>Introduce un Alias</span>
+          </div>
+        </div>
+
+        <div class="col input">
+          <label for="email">Correo electrónico</label>
+          <input type="email" formControlName="email" id="email" name="email" />
+          <div class="row control-error" *ngIf="isInvalidControl('email')">
+            <i class="fas fa-exclamation-circle"></i>
+            <span>Introduce un correo válido</span>
+          </div>
+        </div>
+
+        <div class="col input">
+          <label for="password"><span>Contraseña</span></label>
+          <input type="password" formControlName="password" id="password" />
+          <div class="row control-error" *ngIf="isInvalidControl('password')">
+            <i class="fas fa-exclamation-circle"></i>
+            <span>Al menos 8 caracteres</span>
+          </div>
+        </div>
+
+        <div class="col input">
+          <label for="repeat-password"><span>Repita Contraseña</span></label>
+          <input
+            type="password"
+            formControlName="repeatPassword"
+            id="repeat-password"
+          />
+          <div class="row control-error" *ngIf="isInvalidControl('name')">
+            <i class="fas fa-exclamation-circle"></i>
+            <span>Repita la contraseña</span>
+          </div>
+        </div>
+
+        <div class="row input remember">
+          <input type="checkbox" formControlName="remember" />
+          <label for="remember">Recordar email</label>
+        </div>
+
+        <button class="button">Crear cuenta</button>
+      </form>
+
+      <div class="col signup">
+        <span
+          >¿Ya tienes cuenta?
+          <strong routerLink="/login" class="link">Accede</strong></span
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-notification-card
+  [message]="notifyMessage"
+  class="notify"
+  id="notify"
+></app-notification-card>

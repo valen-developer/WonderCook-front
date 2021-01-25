@@ -8,7 +8,6 @@ export class TokenService {
 
   get(): string {
     const token = localStorage.getItem('token');
-    console.log(token);
 
     return token;
   }

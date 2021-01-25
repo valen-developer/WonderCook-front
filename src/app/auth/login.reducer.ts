@@ -1,4 +1,4 @@
-import { createReducer, on } from '@ngrx/store';
+import { ActionReducer, createReducer, on } from '@ngrx/store';
 import { loginAction, logoutAction } from './login.actions';
 
 export const initialLoginState = false;

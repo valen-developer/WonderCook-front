@@ -1,7 +1,7 @@
 export const environment = {
-  production: false,
+  production: true,
   api: {
     devUrl: 'http://localhost:3000/api',
-    prodUrl: '',
+    prodUrl: 'http://192.168.0.19:3000/api',
   },
 };

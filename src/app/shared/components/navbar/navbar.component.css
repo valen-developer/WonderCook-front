@@ -1,0 +1,18 @@
+.navbar {
+  position: sticky;
+}
+
+.icon {
+  align-items: center;
+}
+
+.icon > img {
+  width: 30px;
+  margin: 0 10px 0 20px;
+}
+.icon > h3 {
+  color: var(--primary-color);
+}
+.icon > h3 > span {
+  color: var(--secondary-color);
+}

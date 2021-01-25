@@ -1,44 +1,61 @@
-<div class="background">
-  <app-bubble></app-bubble>
+<div class="main animate__animated animate__fadeIn">
+  <div class="image"></div>
 
-  <div class="card">
-    <h1>Acceder</h1>
+  <div class="form col col-w10">
+    <h1 class="animate__animated animate__fadeInRight">
+      Wonder<span>Cook</span>
+    </h1>
 
-    <form class="form" [formGroup]="form">
-      <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input
-          type="text"
-          class="form-control"
-          id="email"
-          placeholder="Email"
-          formControlName="email"
-        />
-      </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Contraseña</label>
-        <input
-          type="password"
-          class="form-control"
-          id="password"
-          placeholder="Contraseña"
-          formControlName="password"
-        />
-      </div>
+    <div class="load" *ngIf="loading">
+      <app-loading></app-loading>
+    </div>
 
-      <div class="options">
-        <div class="remember">
-          <input type="checkbox" id="checkbox" formControlName="remember" />
-          <label for="checkbox"><span>Recuérdame</span></label>
+    <div class="col col-w6 form-container" *ngIf="!loading">
+      <h2>Acceder.</h2>
+      <p>
+        Accede a tu cuenta con tu <strong>Correo</strong> y
+        <strong>Contraseña</strong> para poder hacer las mejores recetas
+      </p>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="col input">
+          <label for="email">Correo electrónico</label>
+          <input type="email" formControlName="email" id="email" name="email" />
+          <div class="row control-error" *ngIf="isInvalidControl('email')">
+            <i class="fas fa-exclamation-circle"></i>
+            <span>Introduce un correo válido</span>
+          </div>
         </div>
-        <div class="signup">
-          <span routerLink="/register">Registrarme</span>
-        </div>
-      </div>
 
-      <button type="button" class="btn btn-primary submit" (click)="onSubmit()">
-        Entrar
-      </button>
-    </form>
+        <div class="col input">
+          <label for="password"><span>Contraseña</span></label>
+          <input type="password" formControlName="password" id="password" />
+          <div class="row control-error" *ngIf="isInvalidControl('password')">
+            <i class="fas fa-exclamation-circle"></i>
+            <span>Introduce una contraseña</span>
+          </div>
+        </div>
+
+        <div class="row input remember">
+          <input type="checkbox" formControlName="remember" />
+          <label for="remember">Recordar email</label>
+        </div>
+
+        <button class="button">Entrar</button>
+      </form>
+
+      <div class="col signup">
+        <span
+          >¿Aún no tienes cuenta?
+          <strong routerLink="/register" class="link">Regístrate</strong></span
+        >
+      </div>
+    </div>
   </div>
 </div>
+
+<app-notification-card
+  class="notify"
+  id="notify"
+  [message]="notifyMessage"
+></app-notification-card>
